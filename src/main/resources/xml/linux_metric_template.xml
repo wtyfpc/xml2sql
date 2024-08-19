@@ -1,0 +1,53 @@
+<tempalte name="linux_metric_template">
+    <description>Linux服务器指标模版</description>
+    <introduce>6.6</introduce>
+    <last_modify>6.6</last_modify>
+    <creator>gv</creator>
+    <metrics>
+        <resmetric name="linux_cpu_usage"
+                   collector="com.sugon.acx.collector.app.oslinux.collector.impl.OslinuxCollectorImpl"
+                   display_name="CPU利用率"
+                   description="Linux服务区CPU利用率"
+                   data_type="1"
+                   unit="%"
+                   part_type="cpu"
+                   collect_interval="90"
+                   iscollect="1"
+                   pre_process=""
+                   post_process=""
+                   collect_mode="1"
+                   batch_group="group1"
+                   priority="0"
+                   protocol="http"
+                   protocol_param="/linux/monitor/main"
+                   value_keyword="linux_cpu_usage"
+                   value_range="0~100"
+                   value_mapping=""
+                   create_version="6.6"
+                   last_modify_version="6.6"
+        />
+        <resmetric name="linux_memory_usage"
+                   collector="com.sugon.acx.collector.app.oslinux.collector.impl.OslinuxCollectorImpl"
+                   display_name="内存利用率"
+                   description="Linux服务区内存利用率"
+                   data_type="1"
+                   unit="%"
+                   part_type="memory"
+                   collect_interval="90"
+                   iscollect="1"
+                   pre_process=""
+                   post_process=""
+                   collect_mode="1"
+                   batch_group="group1"
+                   priority="0"
+                   protocol="http"
+                   protocol_param="/linux/monitor/main"
+                   value_keyword="linux_memory_usage"
+                   value_range="0~100"
+                   value_mapping=""
+                   create_version="6.6"
+                   last_modify_version="6.6"
+        />
+    </metrics>
+
+</tempalte>
