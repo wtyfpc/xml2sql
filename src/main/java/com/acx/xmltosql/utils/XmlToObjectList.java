@@ -16,7 +16,7 @@ import java.util.List;
 public class XmlToObjectList {
 
     @Value("${xml.directory.path}")
-    private String directoryPath;
+    private String xmlDirectoryPath;
 
     void XmlToObject(){
 
@@ -24,7 +24,7 @@ public class XmlToObjectList {
 
     public List<XmlTemplate> loadfile(){
         // 创建一个文件对象，指向该目录
-        File directory = new File(directoryPath);
+        File directory = new File(xmlDirectoryPath);
         // 获取目录下的所有XML文件
         File[] files = directory.listFiles((dir, name) -> name.toLowerCase().endsWith(".xml"));
 

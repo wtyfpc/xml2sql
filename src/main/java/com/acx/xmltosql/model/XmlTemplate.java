@@ -9,7 +9,7 @@ public class XmlTemplate {
 
     private String name;
 
-    private String visiable;
+    private byte visiable;
 
 
     private String description;
@@ -30,9 +30,9 @@ public class XmlTemplate {
 
     // TODO: 2024/8/19  是否要进入visiable字段
     @XmlElement(name = "visiable")
-    public String getVisiable(){return visiable;}
+    public byte getVisiable(){return visiable;}
     public void setVisiable(String name) {
-        this.name = name;
+        this.visiable = visiable;
     }
 
 
