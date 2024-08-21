@@ -1,6 +1,6 @@
 package com.acx.xmltosql;
 import com.acx.xmltosql.model.XmlTemplate;
-import com.acx.xmltosql.utils.XmlToObjectList;
+import com.acx.xmltosql.common.XmlToObjectList;
 import com.acx.xmltosql.utils.draw.IDrawMethod;
 import com.acx.xmltosql.utils.draw.SqlCreateFactory;
 import org.springframework.beans.factory.annotation.Autowired;

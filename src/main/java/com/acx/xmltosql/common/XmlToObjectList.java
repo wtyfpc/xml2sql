@@ -1,4 +1,4 @@
-package com.acx.xmltosql.utils;
+package com.acx.xmltosql.common;
 
 import com.acx.xmltosql.model.ResMetric;
 import com.acx.xmltosql.model.XmlTemplate;

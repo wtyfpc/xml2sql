@@ -14,6 +14,8 @@ public abstract class NewlyInstallSqlGenerator extends BaseSqlGenerator implemen
         exportToFile(sql);
     }
 
+
+
     //拼接SQL字符串
     public StringBuilder buildSql(String sql,StringBuilder sqlBuilder){
         sqlBuilder.append(sql).append("\n");
