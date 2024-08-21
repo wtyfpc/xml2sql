@@ -1,9 +1,9 @@
 package com.acx.xmltosql.utils.draw.impl;
 import com.acx.xmltosql.model.XmlTemplate;
 import com.acx.xmltosql.utils.draw.IDrawMethod;
-import com.acx.xmltosql.utils.method.newinstalled.impl.MetricGenerator;
-import com.acx.xmltosql.utils.method.newinstalled.impl.MetricRelationGenerator;
-import com.acx.xmltosql.utils.method.newinstalled.impl.MetricTemplGenerator;
+import com.acx.xmltosql.utils.method.newinstall.impl.MetricGenerator;
+import com.acx.xmltosql.utils.method.newinstall.impl.MetricRelationGenerator;
+import com.acx.xmltosql.utils.method.newinstall.impl.MetricTemplGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

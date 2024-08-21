@@ -1,17 +1,15 @@
-package com.acx.xmltosql.utils.method.newinstalled.impl;
+package com.acx.xmltosql.utils.method.newinstall.impl;
 
 import com.acx.xmltosql.model.ResMetric;
 import com.acx.xmltosql.model.XmlTemplate;
-import com.acx.xmltosql.utils.method.newinstalled.NewlyInstallSqlGenerator;
+import com.acx.xmltosql.utils.method.newinstall.NewlyInstallSqlGenerator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
@@ -27,13 +25,13 @@ public class MetricGenerator extends NewlyInstallSqlGenerator {
 
     @Override
     public String generateSql(List<XmlTemplate> xmlTemplateList){
-        //TODO
-        filterResMetic
-        for(XmlTemplate xmlTemplate : xmlTemplateList) {
-            for (ResMetric resMetric : xmlTemplate.getMetrics().getResmetrics()) {
+        //存储筛选过的指标
+        List<ResMetric> resMetricList= new ArrayList<>();
+        //筛选指标
+        resMetricList = filterResMetic(xmlTemplateList);
+        for(ResMetric resMetric : resMetricList) {
                 String sql = parseXmlObject(resMetric);
                 sqlBuilder = buildSql(sql,sqlBuilder);
-            }
         }
         return sqlBuilder.toString();
     }
@@ -55,18 +53,19 @@ public class MetricGenerator extends NewlyInstallSqlGenerator {
                         "part_type ,collect_interval ,iscollect, pre_process, post_process, collect_mode, batch_group" +
                         ", priority, collect_protocol, protocol_param, value_keyword, value_range, value_mapping, " +
                         "introduced_version, last_modify_version) " +
-                        "VALUES ('%s', '%s');",
-                resMetric.getName(),resMetric.getCollector(),resMetric.getDisplayName(),resMetric.getDisplayName()
-                ,resMetric.getDescription(),resMetric.getDataType(),resMetric.getUnit(),resMetric.getPartType(),
-                resMetric.getCollectInterval(),resMetric.getIsCollect(),resMetric.getPreProcess(),resMetric.getPostProcess()
-                ,resMetric.getCollectMode(),resMetric.getBatchGroup(),resMetric.getPriority(),resMetric.getCollectProtocol()
-                ,resMetric.getProtocolParam(),resMetric.getValueKeyword(),resMetric.getValueRange(),resMetric.getValueMapping()
+                        "VALUES ('%s', '%s','%s', '%s', %d, '%s','%s', %d, %d, '%s','%s', %d,'%s', %d,'%s', '%s'," +
+                        "'%s', '%s','%s', '%s','%s');",
+                resMetric.getName(),resMetric.getCollector(),resMetric.getDisplayName(),resMetric.getDescription()
+                ,resMetric.getDataType(),resMetric.getUnit(),resMetric.getPartType(), resMetric.getCollectInterval(),
+                resMetric.getIsCollect(),resMetric.getPreProcess(),resMetric.getPostProcess(),resMetric.getCollectMode()
+                ,resMetric.getBatchGroup(),resMetric.getPriority(),resMetric.getCollectProtocol(),resMetric.getProtocolParam()
+                ,resMetric.getValueKeyword(),resMetric.getValueRange(),resMetric.getValueMapping()
                 ,resMetric.getCreateVersion(),resMetric.getLastModifyVersion()
         );
     }
 
-    protected static Map<String, ResMetric> filterResMetic(List<XmlTemplate> xmlTemplateList){
-        return xmlTemplateList.stream()
+    protected static List<ResMetric> filterResMetic(List<XmlTemplate> xmlTemplateList){
+        Map<String,ResMetric> maxLastModifyVersionResMetric= xmlTemplateList.stream()
                 .map(XmlTemplate::getMetrics)  // 提取 Metrics 对象
                 .flatMap(metrics -> metrics.getResmetrics().stream())  // 获取 ResMetric 列表并展平成单个流
                 .collect(Collectors.groupingBy(
@@ -75,8 +74,12 @@ public class MetricGenerator extends NewlyInstallSqlGenerator {
                                 // 选择每组中 LastModifyVersion 最大的项
                                 Collectors.maxBy(Comparator.comparing(ResMetric::getLastModifyVersion)),
                                 optional -> optional.orElse(null)
-                                )
-                        ));
+                        )
+                ));
+        //将maxLastModifyVersionResMetric存入列表里面
+        List<ResMetric> resMetricList = new ArrayList<>(maxLastModifyVersionResMetric.values());
+
+        return resMetricList;
     }
 
 

@@ -1,11 +1,8 @@
-package com.acx.xmltosql.utils.method.newinstalled;
+package com.acx.xmltosql.utils.method.newinstall;
 
 import com.acx.xmltosql.model.XmlTemplate;
 import com.acx.xmltosql.utils.method.BaseSqlGenerator;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 
 

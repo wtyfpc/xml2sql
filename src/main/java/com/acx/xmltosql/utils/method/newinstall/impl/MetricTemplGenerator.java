@@ -1,7 +1,7 @@
-package com.acx.xmltosql.utils.method.newinstalled.impl;
+package com.acx.xmltosql.utils.method.newinstall.impl;
 
 import com.acx.xmltosql.model.XmlTemplate;
-import com.acx.xmltosql.utils.method.newinstalled.NewlyInstallSqlGenerator;
+import com.acx.xmltosql.utils.method.newinstall.NewlyInstallSqlGenerator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

@@ -1,8 +1,8 @@
-package com.acx.xmltosql.utils.method.newinstalled.impl;
+package com.acx.xmltosql.utils.method.newinstall.impl;
 
 import com.acx.xmltosql.model.ResMetric;
 import com.acx.xmltosql.model.XmlTemplate;
-import com.acx.xmltosql.utils.method.newinstalled.NewlyInstallSqlGenerator;
+import com.acx.xmltosql.utils.method.newinstall.NewlyInstallSqlGenerator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -37,13 +37,9 @@ public class MetricRelationGenerator extends NewlyInstallSqlGenerator {
     //TODO 修改格式
     protected static String parseXmlObject(XmlTemplate xmlTemplate,ResMetric resMetric) {
         return String.format(
-                "INSERT INTO gv_collect_template_metric_relation (name, collector, display_name ,description ,data_type, unit" +
-                        "part_type ,collect_interval ,iscollect, pre_process, post_process, collect_mode, batch_group" +
-                        ", priority, collect_protocol, protocol_param, value_keyword, value_range, value_mapping, " +
-                        "introduced_version, last_modify_version) " +
+                "INSERT INTO gv_collect_template_metric_relation (name, metric_name) " +
                         "VALUES ('%s', '%s');",
-                resMetric.getName(),resMetric.getCollector(),resMetric.getDisplayName(),resMetric.getDisplayName()
-                ,resMetric.getDescription()
+                xmlTemplate.getName(),resMetric.getName()
         );
     }
 

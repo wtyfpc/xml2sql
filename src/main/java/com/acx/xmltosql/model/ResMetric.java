@@ -9,16 +9,16 @@ public class ResMetric {
     private String collector;
     private String displayName;
     private String description;
-    private String dataType;
+    private byte dataType;
     private String unit;
     private String partType;
-    private String collectInterval;
-    private String isCollect;
+    private byte collectInterval;
+    private byte isCollect;
     private String preProcess;
     private String postProcess;
-    private String collectMode;
+    private byte collectMode;
     private String batchGroup;
-    private String priority;
+    private byte priority;
     private String collectProtocol;
     private String protocolParam;
     private String valueKeyword;
@@ -64,11 +64,11 @@ public class ResMetric {
     }
 
     @XmlAttribute(name = "data_type")
-    public String getDataType() {
+    public byte getDataType() {
         return dataType;
     }
 
-    public void setDataType(String dataType) {
+    public void setDataType(byte dataType) {
         this.dataType = dataType;
     }
 
@@ -91,20 +91,20 @@ public class ResMetric {
     }
 
     @XmlAttribute(name = "collect_interval")
-    public String getCollectInterval() {
+    public byte getCollectInterval() {
         return collectInterval;
     }
 
-    public void setCollectInterval(String collectInterval) {
+    public void setCollectInterval(byte collectInterval) {
         this.collectInterval = collectInterval;
     }
 
     @XmlAttribute(name = "iscollect")
-    public String getIsCollect() {
+    public byte getIsCollect() {
         return isCollect;
     }
 
-    public void setIsCollect(String isCollect) {
+    public void setIsCollect(byte isCollect) {
         this.isCollect = isCollect;
     }
 
@@ -127,11 +127,11 @@ public class ResMetric {
     }
 
     @XmlAttribute(name = "collect_mode")
-    public String getCollectMode() {
+    public byte getCollectMode() {
         return collectMode;
     }
 
-    public void setCollectMode(String collectMode) {
+    public void setCollectMode(byte collectMode) {
         this.collectMode = collectMode;
     }
 
@@ -145,11 +145,11 @@ public class ResMetric {
     }
 
     @XmlAttribute(name = "priority")
-    public String getPriority() {
+    public byte getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(byte priority) {
         this.priority = priority;
     }
 

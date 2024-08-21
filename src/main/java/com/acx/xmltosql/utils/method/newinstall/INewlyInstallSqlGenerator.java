@@ -1,4 +1,4 @@
-package com.acx.xmltosql.utils.method.newinstalled;
+package com.acx.xmltosql.utils.method.newinstall;
 
 import com.acx.xmltosql.model.XmlTemplate;
 
