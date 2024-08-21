@@ -1,22 +1,22 @@
 package com.acx.xmltosql;
 import com.acx.xmltosql.model.XmlTemplate;
 import com.acx.xmltosql.utils.XmlToObjectList;
-import com.acx.xmltosql.utils.method.newinstalled.impl.MetricTemplGenerator;
+import com.acx.xmltosql.utils.draw.IDrawMethod;
+import com.acx.xmltosql.utils.draw.SqlCreateFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import java.util.List;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
     @Autowired
-    private XmlToObjectList xmlToObjectList;
+    private SqlCreateFactory sqlCreateFactory;
 
     @Autowired
-    private MetricTemplGenerator metricTemplGenerator;
+    private XmlToObjectList xmlToObjectList;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -25,9 +25,8 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         List<XmlTemplate>  xmlObjectList = xmlToObjectList.loadfile();
-        String sql = metricTemplGenerator.generateSql(xmlObjectList);
-        System.out.println(sql);
-        metricTemplGenerator.exportToFile(sql);
+        IDrawMethod drawMethod = sqlCreateFactory.getSqlGenerator();
+        drawMethod.draw(xmlObjectList);
     }
 
 }

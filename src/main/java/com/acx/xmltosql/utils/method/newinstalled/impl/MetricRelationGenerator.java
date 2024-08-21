@@ -1,26 +1,61 @@
 package com.acx.xmltosql.utils.method.newinstalled.impl;
 
+import com.acx.xmltosql.model.ResMetric;
 import com.acx.xmltosql.model.XmlTemplate;
 import com.acx.xmltosql.utils.method.newinstalled.NewlyInstallSqlGenerator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 @Component
 public class MetricRelationGenerator extends NewlyInstallSqlGenerator {
 
-    @Override
-    protected String generateSql(List<XmlTemplate> xmlObject) {
-        return null;
+    @Value("${sql.gv_collect_template_metric_relation.file.path}")
+    private String sqlFilePath;
+    private StringBuilder sqlBuilder;
+
+    public MetricRelationGenerator() {
+        this.sqlBuilder = new StringBuilder(); // 在构造函数中初始化 StringBuilder
     }
 
     @Override
-    public StringBuilder buildSql(String sql, StringBuilder sqlBuilder) {
-        return null;
+    public String generateSql(List<XmlTemplate> xmlTemplateList){
+        for(XmlTemplate xmlTemplate : xmlTemplateList) {
+            for (ResMetric resMetric : xmlTemplate.getMetrics().getResmetrics()) {
+                String sql = parseXmlObject(xmlTemplate,resMetric);
+                sqlBuilder = buildSql(sql,sqlBuilder);
+            }
+        }
+        return sqlBuilder.toString();
+    }
+
+
+    //TODO 修改格式
+    protected static String parseXmlObject(XmlTemplate xmlTemplate,ResMetric resMetric) {
+        return String.format(
+                "INSERT INTO gv_collect_template_metric_relation (name, collector, display_name ,description ,data_type, unit" +
+                        "part_type ,collect_interval ,iscollect, pre_process, post_process, collect_mode, batch_group" +
+                        ", priority, collect_protocol, protocol_param, value_keyword, value_range, value_mapping, " +
+                        "introduced_version, last_modify_version) " +
+                        "VALUES ('%s', '%s');",
+                resMetric.getName(),resMetric.getCollector(),resMetric.getDisplayName(),resMetric.getDisplayName()
+                ,resMetric.getDescription()
+        );
     }
 
     @Override
-    protected void exportToFile(String sql) {
-
+    public void exportToFile(String sql) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(sqlFilePath, true))) {
+            writer.write(sql);
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
 }

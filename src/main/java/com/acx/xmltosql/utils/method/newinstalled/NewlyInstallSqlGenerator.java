@@ -18,11 +18,10 @@ public abstract class NewlyInstallSqlGenerator extends BaseSqlGenerator implemen
     }
 
     //拼接SQL字符串
-    public abstract StringBuilder buildSql(String sql,StringBuilder sqlBuilder);
-
-
-    // 导出生成的SQL语句到指定文件
-    protected abstract void exportToFile(String sql);
+    public StringBuilder buildSql(String sql,StringBuilder sqlBuilder){
+        sqlBuilder.append(sql).append("\n");
+        return sqlBuilder;
+    }
 
 
 }

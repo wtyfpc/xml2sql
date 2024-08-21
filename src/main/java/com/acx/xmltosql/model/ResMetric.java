@@ -19,7 +19,7 @@ public class ResMetric {
     private String collectMode;
     private String batchGroup;
     private String priority;
-    private String protocol;
+    private String collectProtocol;
     private String protocolParam;
     private String valueKeyword;
     private String valueRange;
@@ -153,13 +153,11 @@ public class ResMetric {
         this.priority = priority;
     }
 
-    @XmlAttribute(name = "protocol")
-    public String getProtocol() {
-        return protocol;
-    }
+    @XmlAttribute(name = "collect_protocol")
+    public String getCollectProtocol() {return collectProtocol;}
 
     public void setProtocol(String protocol) {
-        this.protocol = protocol;
+        this.collectProtocol = collectProtocol;
     }
 
     @XmlAttribute(name = "protocol_param")

@@ -45,9 +45,6 @@ public class XmlToObjectList {
                     Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
                     XmlTemplate xmlTemplate = (XmlTemplate) jaxbUnmarshaller.unmarshal(file);
 
-                    // 获取resmetric列表
-                    List<ResMetric> resmetrics = xmlTemplate.getMetrics().getResmetrics();
-
                     // 将对象加入到ArrayList中
                     xmlObjectList.add(xmlTemplate);
 

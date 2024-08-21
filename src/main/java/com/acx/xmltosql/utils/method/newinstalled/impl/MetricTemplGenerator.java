@@ -15,12 +15,12 @@ import java.util.List;
 public class MetricTemplGenerator extends NewlyInstallSqlGenerator {
     private StringBuilder sqlBuilder;
 
-    public MetricTemplGenerator() {
-        this.sqlBuilder = new StringBuilder(); // 在构造函数中初始化 StringBuilder
-    }
     @Value("${sql.gv_collection_metric_templ.file.path}")
     private String sqlFilePath;
 
+    public MetricTemplGenerator() {
+        this.sqlBuilder = new StringBuilder(); // 在构造函数中初始化 StringBuilder
+    }
 
     @Override
     public String generateSql(List<XmlTemplate> xmlTemplateList){
@@ -35,6 +35,7 @@ public class MetricTemplGenerator extends NewlyInstallSqlGenerator {
         return sqlBuilder.toString();
     }
 
+
     protected static String parseXmlObject(XmlTemplate xmlTemplate) {
         return String.format(
                 "INSERT INTO gv_collection_metric_templ (name, creator, description, create_version, last_modify_version) " +
@@ -42,7 +43,6 @@ public class MetricTemplGenerator extends NewlyInstallSqlGenerator {
                 xmlTemplate.getName(),xmlTemplate.getCreator(),xmlTemplate.getDescription(),xmlTemplate.getIntroduce(),xmlTemplate.getLastModify()
         );
     }
-
 
     @Override
     public void exportToFile(String sql) {
@@ -53,16 +53,6 @@ public class MetricTemplGenerator extends NewlyInstallSqlGenerator {
             e.printStackTrace();
         }
     }
-
-    @Override
-    public StringBuilder buildSql(String sql,StringBuilder sqlBuilder){
-        sqlBuilder.append(sql).append("\n");
-        return sqlBuilder;
-    }
-
-
-
-
 
 
 
