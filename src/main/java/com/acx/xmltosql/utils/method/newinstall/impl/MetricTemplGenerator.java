@@ -2,6 +2,8 @@ package com.acx.xmltosql.utils.method.newinstall.impl;
 
 import com.acx.xmltosql.model.XmlTemplate;
 import com.acx.xmltosql.utils.method.newinstall.NewlyInstallSqlGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +15,9 @@ import java.util.List;
 
 @Component
 public class MetricTemplGenerator extends NewlyInstallSqlGenerator {
+
+    private static final Logger logger = LoggerFactory.getLogger(MetricTemplGenerator.class);
+
     private StringBuilder sqlBuilder;
 
     @Value("${sql.gv_collection_metric_templ.file.path}")
@@ -50,6 +55,7 @@ public class MetricTemplGenerator extends NewlyInstallSqlGenerator {
             writer.write(sql);
             writer.newLine();
         } catch (IOException e) {
+            logger.error("导出指标模板SQL文件");
             e.printStackTrace();
         }
     }

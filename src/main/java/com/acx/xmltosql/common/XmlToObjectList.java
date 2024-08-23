@@ -5,6 +5,8 @@ import com.acx.xmltosql.model.XmlTemplate;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,9 @@ import java.util.List;
 
 @Component
 public class XmlToObjectList {
+
+    private static final Logger logger = LoggerFactory.getLogger(XmlToObjectList.class);
+
 
     @Value("${xml.directory.path}")
     private String xmlDirectoryPath;
@@ -39,6 +44,7 @@ public class XmlToObjectList {
                     try {
                         jaxbContext = JAXBContext.newInstance(XmlTemplate.class);
                     } catch (JAXBException ex) {
+                        logger.error("JAXBException occurred: ", ex);
                         throw new RuntimeException(ex);
                     }
 
@@ -49,6 +55,7 @@ public class XmlToObjectList {
                     xmlObjectList.add(xmlTemplate);
 
                 } catch (JAXBException e) {
+                    logger.error("JAXBException occurred: ", e);
                     e.printStackTrace();
                 }
 

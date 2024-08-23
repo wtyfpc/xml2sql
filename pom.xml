@@ -42,6 +42,12 @@
             <version>3.0.1</version>
         </dependency>
 
+        <!--                  Log                      -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
     </dependencies>
 
 
@@ -63,7 +69,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.example.MainClass</mainClass> <!-- 替换为你的主类 -->
+                            <mainClass>com.acx.xmltosql.Application</mainClass> <!-- 替换为你的主类 -->
                         </manifest>
                     </archive>
                 </configuration>

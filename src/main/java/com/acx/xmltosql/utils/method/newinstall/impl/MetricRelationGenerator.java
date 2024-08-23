@@ -3,6 +3,8 @@ package com.acx.xmltosql.utils.method.newinstall.impl;
 import com.acx.xmltosql.model.ResMetric;
 import com.acx.xmltosql.model.XmlTemplate;
 import com.acx.xmltosql.utils.method.newinstall.NewlyInstallSqlGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +15,8 @@ import java.util.List;
 
 @Component
 public class MetricRelationGenerator extends NewlyInstallSqlGenerator {
+
+    private static final Logger logger = LoggerFactory.getLogger(MetricRelationGenerator.class);
 
     @Value("${sql.gv_collect_template_metric_relation.file.path}")
     private String sqlFilePath;
@@ -49,6 +53,7 @@ public class MetricRelationGenerator extends NewlyInstallSqlGenerator {
             writer.write(sql);
             writer.newLine();
         } catch (IOException e) {
+            logger.error("导出指标模板指标关联关系表SQL异常");
             e.printStackTrace();
         }
     }
