@@ -48,6 +48,13 @@
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
 
+        <!--                  jcommander              -->
+        <dependency>
+            <groupId>com.beust</groupId>
+            <artifactId>jcommander</artifactId>
+            <version>1.82</version>
+        </dependency>
+
     </dependencies>
 
 

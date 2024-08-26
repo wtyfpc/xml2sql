@@ -1,10 +1,11 @@
 package com.acx.xmltosql.utils.method.newinstall.impl;
 
+import com.acx.xmltosql.common.InputArgs;
 import com.acx.xmltosql.model.XmlTemplate;
 import com.acx.xmltosql.utils.method.newinstall.NewlyInstallSqlGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
@@ -20,12 +21,18 @@ public class MetricTemplGenerator extends NewlyInstallSqlGenerator {
 
     private StringBuilder sqlBuilder;
 
-    @Value("${sql.gv_collection_metric_templ.file.path}")
-    private String sqlFilePath;
+    @Autowired
+    private final InputArgs inputArgs;
+    private final String sqlFilePath;
 
-    public MetricTemplGenerator() {
+    public MetricTemplGenerator(InputArgs inputArgs) {
+        this.inputArgs = inputArgs;
+        this.sqlFilePath = inputArgs.getMetricTemplFilePath(); // 在 setter 中初始化
         this.sqlBuilder = new StringBuilder(); // 在构造函数中初始化 StringBuilder
     }
+
+
+
 
     @Override
     public String generateSql(List<XmlTemplate> xmlTemplateList){

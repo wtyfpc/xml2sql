@@ -1,13 +1,12 @@
 package com.acx.xmltosql.common;
 
-import com.acx.xmltosql.model.ResMetric;
 import com.acx.xmltosql.model.XmlTemplate;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -17,11 +16,10 @@ import java.util.List;
 @Component
 public class XmlToObjectList {
 
+    @Autowired
+    private InputArgs inputArgs;
+
     private static final Logger logger = LoggerFactory.getLogger(XmlToObjectList.class);
-
-
-    @Value("${xml.directory.path}")
-    private String xmlDirectoryPath;
 
     void XmlToObject(){
 
@@ -29,7 +27,7 @@ public class XmlToObjectList {
 
     public List<XmlTemplate> loadfile(){
         // 创建一个文件对象，指向该目录
-        File directory = new File(xmlDirectoryPath);
+        File directory = new File(inputArgs.getXmlDirectoryPath());
         // 获取目录下的所有XML文件
         File[] files = directory.listFiles((dir, name) -> name.toLowerCase().endsWith(".xml"));
 

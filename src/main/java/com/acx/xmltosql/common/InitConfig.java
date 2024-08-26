@@ -1,6 +1,6 @@
 package com.acx.xmltosql.common;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -8,13 +8,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 @Configuration
 public class InitConfig {
 
-    @Value("${sql.gv_collection_metric_templ.file.path}")
-    private Path outputPath;
+    @Autowired
+    private final InputArgs inputArgs;
+
+    private final Path outputPath;
+
+    public InitConfig(InputArgs inputArgs) {
+        this.inputArgs = inputArgs;
+        this.outputPath = Paths.get(inputArgs.getMetricTemplFilePath());
+    }
+
 
     @PostConstruct
     public void createPathIfNotExists() throws IOException {
@@ -24,8 +33,7 @@ public class InitConfig {
             Files.createDirectories(parentDirectory);  // 创建父目录
         }
 
-
-        // 复制 resource 下的 gv_collect_template_metric_relation.sql 文件到 parentDirectory
+        // 复制 resource 下的 gv_collect_new.sql 文件到 parentDirectory
         try (InputStream resourceStream = getClass().getClassLoader()
                 .getResourceAsStream("sql/gv_collect_new.sql")) {
 

@@ -1,15 +1,21 @@
 package com.acx.xmltosql.utils.draw;
 
+import com.acx.xmltosql.common.InputArgs;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import static com.acx.xmltosql.utils.draw.DrawConfig.drawMethodMap;
 
 @Component
 public class SqlCreateFactory {
 
-    @Value("${deployment}")
-    private String deployment;
+    @Autowired
+    private final InputArgs inputArgs;
+    private final String deployment;
+
+    public SqlCreateFactory(InputArgs inputArgs) {
+        this.inputArgs = inputArgs;
+        deployment =  inputArgs.getDeployment();
+    }
 
 
     public IDrawMethod getSqlGenerator() {

@@ -1,11 +1,12 @@
 package com.acx.xmltosql.utils.method.newinstall.impl;
 
+import com.acx.xmltosql.common.InputArgs;
 import com.acx.xmltosql.model.ResMetric;
 import com.acx.xmltosql.model.XmlTemplate;
 import com.acx.xmltosql.utils.method.newinstall.NewlyInstallSqlGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
@@ -20,10 +21,13 @@ public class MetricGenerator extends NewlyInstallSqlGenerator {
     private static final Logger logger = LoggerFactory.getLogger(MetricGenerator.class);
 
     private StringBuilder sqlBuilder;
-    @Value("${sql.gv_collection_metric.file.path}")
-    private String sqlFilePath;
+    @Autowired
+    private final InputArgs inputArgs;
+    private final String sqlFilePath;
 
-    public MetricGenerator() {
+    public MetricGenerator(InputArgs inputArgs) {
+        this.inputArgs = inputArgs;
+        this.sqlFilePath = inputArgs.getMetricFilePath();
         this.sqlBuilder = new StringBuilder(); // 在构造函数中初始化 StringBuilder
     }
 
