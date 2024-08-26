@@ -8,14 +8,8 @@ public class InputArgs {
     @Parameter(names = {"-x", "--xml.directory.path"}, description = "xml file address")
     private String xmlDirectoryPath = "./xml";
 
-    @Parameter(names = {"-metric_templ", "--sql.gv_collection_metric_templ.file.path"}, description = "Indicator template file location")
-    private String metricTemplFilePath = "./data/sql/gv_collection_metric_templ.sql";
-
-    @Parameter(names = {"-metric_templ_relation", "--sql.gv_collect_template_metric_relation.file.path"}, description = "Indicator template indicator association relationship table")
-    private String templateMetricRelationFilePath = "./data/sql/gv_collect_template_metric_relation.sql";
-
-    @Parameter(names = {"-metric", "--sql.gv_collection_metric.file.path"}, description = "Indicator table")
-    private String metricFilePath = "./data/sql/gv_collect_new.sql";
+    @Parameter(names = {"-s", "--sql.file.path"}, description = "SQL file location")
+    private String sqlDirectoryPath = "./data/sql/";
 
     @Parameter(names = {"-l", "--log_path"}, description = "Log path")
     private String logPath = "./data/log";
@@ -29,17 +23,10 @@ public class InputArgs {
         return xmlDirectoryPath;
     }
 
-    public String getMetricTemplFilePath(){
-        return metricTemplFilePath;
+    public String getSqlFilePath(){
+        return sqlDirectoryPath;
     }
 
-    public String getTemplateMetricRelationFilePath(){
-        return templateMetricRelationFilePath;
-    }
-
-    public String getMetricFilePath(){
-        return metricFilePath;
-    }
 
     public String getLogPath(){
         return logPath;

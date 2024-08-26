@@ -21,7 +21,7 @@ public class InitConfig {
 
     public InitConfig(InputArgs inputArgs) {
         this.inputArgs = inputArgs;
-        this.outputPath = Paths.get(inputArgs.getMetricTemplFilePath());
+        this.outputPath = Paths.get(inputArgs.getSqlFilePath()+"gv_collect_new.sql");
     }
 
 

@@ -27,7 +27,7 @@ public class MetricGenerator extends NewlyInstallSqlGenerator {
 
     public MetricGenerator(InputArgs inputArgs) {
         this.inputArgs = inputArgs;
-        this.sqlFilePath = inputArgs.getMetricFilePath();
+        this.sqlFilePath = inputArgs.getSqlFilePath() + "gv_collection_metric.sql";
         this.sqlBuilder = new StringBuilder(); // 在构造函数中初始化 StringBuilder
     }
 

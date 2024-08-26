@@ -27,7 +27,7 @@ public class MetricTemplGenerator extends NewlyInstallSqlGenerator {
 
     public MetricTemplGenerator(InputArgs inputArgs) {
         this.inputArgs = inputArgs;
-        this.sqlFilePath = inputArgs.getMetricTemplFilePath(); // 在 setter 中初始化
+        this.sqlFilePath = inputArgs.getSqlFilePath() + "gv_collection_metric_templ.sql";
         this.sqlBuilder = new StringBuilder(); // 在构造函数中初始化 StringBuilder
     }
 
