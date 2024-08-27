@@ -32,15 +32,9 @@ public class MetricTemplGenerator extends NewlyInstallSqlGenerator {
     }
 
 
-
-
     @Override
     public String generateSql(List<XmlTemplate> xmlTemplateList){
         for(XmlTemplate xmlTemplate : xmlTemplateList) {
-//            for (ResMetric resMetric : xmlTemplate.getMetrics().getResmetrics()) {
-//                String sql = parseXmlObject(resMetric);
-//                System.out.println(sql);
-//            }
             String sql = parseXmlObject(xmlTemplate);
             sqlBuilder = buildSql(sql,sqlBuilder);
         }

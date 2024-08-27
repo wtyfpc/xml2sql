@@ -14,6 +14,9 @@ public class InputArgs {
     @Parameter(names = {"-l", "--log_path"}, description = "Log path")
     private String logPath = "./data/log";
 
+    @Parameter(names = {"-c", "--log_path"},description = "Input current version")
+    private String currentVersion = "0.0.0";
+
     // Getter methods
     public String getDeployment() {
         return deployment;
@@ -30,6 +33,10 @@ public class InputArgs {
 
     public String getLogPath(){
         return logPath;
+    }
+
+    public String getCurrentVersion(){
+        return currentVersion;
     }
 
 }

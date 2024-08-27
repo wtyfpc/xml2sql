@@ -6,6 +6,7 @@ import java.util.List;
 
 public abstract class BaseSqlGenerator{
 
+
     protected abstract String generateSql(List<XmlTemplate> xmlObject);
 
     // 导出生成的SQL语句到指定文件

@@ -5,11 +5,13 @@ import com.acx.xmltosql.utils.method.newinstall.impl.MetricGenerator;
 import com.acx.xmltosql.utils.method.newinstall.impl.MetricRelationGenerator;
 import com.acx.xmltosql.utils.method.newinstall.impl.MetricTemplGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@ComponentScan(basePackages = "com.acx.xmltosql.utils.method.newinstall.impl")
 public class DrawNewlyInstall implements IDrawMethod {
 
     @Autowired
