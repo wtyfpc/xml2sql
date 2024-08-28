@@ -20,7 +20,9 @@ public class Application implements CommandLineRunner {
     private XmlToObjectList xmlToObjectList;
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication app = new SpringApplication(Application.class);
+        app.setBannerMode(org.springframework.boot.Banner.Mode.OFF); // 关闭启动图标
+        app.run(args);
     }
 
     @Override

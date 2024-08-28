@@ -6,12 +6,15 @@ import com.acx.xmltosql.utils.method.update.UpdateSqlGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+
+@Component("updateMetricTemplGenerator")
 public class MetricTemplGenerator extends UpdateSqlGenerator {
 
     private static final Logger logger = LoggerFactory.getLogger(com.acx.xmltosql.utils.method.newinstall.impl.MetricTemplGenerator.class);
@@ -23,22 +26,27 @@ public class MetricTemplGenerator extends UpdateSqlGenerator {
     private final String sqlFilePath;
     private final String currentVersion;
 
-    public MetricTemplGenerator(StringBuilder sqlBuilder, InputArgs inputArgs) {
-        this.sqlBuilder = sqlBuilder;
+    public MetricTemplGenerator(InputArgs inputArgs) {
         this.inputArgs = inputArgs;
         this.sqlFilePath = inputArgs.getSqlFilePath() + "gv_collection_metric_templ.sql";
         this.currentVersion = inputArgs.getCurrentVersion();
+        this.sqlBuilder = new StringBuilder();
     }
 
     @Override
     protected String generateSql(List<XmlTemplate> xmlTemplateList) {
         for(XmlTemplate xmlTemplate : xmlTemplateList) {
             String sql = null;
-            if(currentVersion==xmlTemplate.getIntroduce()){
-                sql = parseXmlObject2INSERT(xmlTemplate);
+            if(currentVersion.equals(xmlTemplate.getIntroduce())){
+                sql = parseXmlObject2Insert(xmlTemplate);
             }
             else{
-                sql = parseXmlObject2UPDATE(xmlTemplate);
+                if(currentVersion.equals(xmlTemplate.getLastModify())){
+                    sql = parseXmlObject2Update(xmlTemplate);
+                }
+                else{
+                    continue;
+                }
             }
             sqlBuilder = buildSql(sql,sqlBuilder);
         }
@@ -46,7 +54,7 @@ public class MetricTemplGenerator extends UpdateSqlGenerator {
     }
 
 
-    protected static String parseXmlObject2INSERT(XmlTemplate xmlTemplate) {
+    private static String parseXmlObject2Insert(XmlTemplate xmlTemplate) {
         return String.format(
                 "INSERT INTO gv_collection_metric_templ (name, creator, description, create_version, last_modify_version) " +
                         "VALUES ('%s', '%s', '%s', '%s', '%s');",
@@ -54,7 +62,7 @@ public class MetricTemplGenerator extends UpdateSqlGenerator {
         );
     }
 
-    protected static String parseXmlObject2UPDATE(XmlTemplate xmlTemplate) {
+    private static String parseXmlObject2Update(XmlTemplate xmlTemplate) {
         return String.format(
                 "UPDATE gv_collection_metric_templ " +
                         "SET name = '%s', creator = '%s', description = '%s', create_version = '%s', last_modify_version = '%s' " +

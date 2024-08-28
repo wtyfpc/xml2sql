@@ -3,7 +3,7 @@ import com.beust.jcommander.Parameter;
 
 public class InputArgs {
     @Parameter(names = {"-d", "--deployment"}, description = "Select installation mode")
-    private String deployment = "newly_installed";
+    private String deployment = "update";
 
     @Parameter(names = {"-x", "--xml.directory.path"}, description = "xml file address")
     private String xmlDirectoryPath = "./xml";
@@ -14,8 +14,8 @@ public class InputArgs {
     @Parameter(names = {"-l", "--log_path"}, description = "Log path")
     private String logPath = "./data/log";
 
-    @Parameter(names = {"-c", "--log_path"},description = "Input current version")
-    private String currentVersion = "0.0.0";
+    @Parameter(names = {"-c", "--current_time"},description = "Input current version")
+    private String currentVersion = "6.6";
 
     // Getter methods
     public String getDeployment() {

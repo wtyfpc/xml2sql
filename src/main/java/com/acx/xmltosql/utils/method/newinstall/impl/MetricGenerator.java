@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Component
+@Component("newInstallMetricGenerator")
 public class MetricGenerator extends NewlyInstallSqlGenerator {
 
     private static final Logger logger = LoggerFactory.getLogger(MetricGenerator.class);

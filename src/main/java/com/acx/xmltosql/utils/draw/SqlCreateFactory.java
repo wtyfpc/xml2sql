@@ -25,6 +25,9 @@ public class SqlCreateFactory {
         if (deployment.equals("newly_installed")) {
             return drawMethodMap.get("newly_installed");
         }
+        if(deployment.equals("update")){
+            return drawMethodMap.get("update");
+        }
         System.out.println(deployment+"方法为空");
         return null;
     }

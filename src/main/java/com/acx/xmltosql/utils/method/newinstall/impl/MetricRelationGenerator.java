@@ -14,7 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-@Component
+@Component("newInstallMetricRelationGenerator")
 public class MetricRelationGenerator extends NewlyInstallSqlGenerator {
 
     private static final Logger logger = LoggerFactory.getLogger(MetricRelationGenerator.class);
