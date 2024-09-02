@@ -1,5 +1,6 @@
-package com.acx.xmltosql.common;
+package com.acx.xmltosql.common.tools;
 
+import com.acx.xmltosql.common.InputArgs;
 import com.acx.xmltosql.model.XmlTemplate;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
@@ -48,6 +49,12 @@ public class XmlToObjectList {
 
                     Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
                     XmlTemplate xmlTemplate = (XmlTemplate) jaxbUnmarshaller.unmarshal(file);
+
+
+                    //计算xml的hashid
+                    NameToIdUtil nameToIdUtil = new NameToIdUtil();
+                    xmlTemplate.setHashcode(nameToIdUtil.getStrHashCode(xmlTemplate.getName()));
+
 
                     // 将对象加入到ArrayList中
                     xmlObjectList.add(xmlTemplate);

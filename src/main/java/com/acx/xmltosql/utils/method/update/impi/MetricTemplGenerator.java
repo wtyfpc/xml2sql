@@ -56,19 +56,20 @@ public class MetricTemplGenerator extends UpdateSqlGenerator {
 
     private static String parseXmlObject2Insert(XmlTemplate xmlTemplate) {
         return String.format(
-                "INSERT INTO gv_collection_metric_templ (name, creator, description, create_version, last_modify_version) " +
-                        "VALUES ('%s', '%s', '%s', '%s', '%s');",
-                xmlTemplate.getName(),xmlTemplate.getCreator(),xmlTemplate.getDescription(),xmlTemplate.getIntroduce(),xmlTemplate.getLastModify()
+                "INSERT INTO gv_collection_metric_templ (name, creator, visiable, description, create_version, last_modify_version) " +
+                        "VALUES ('%s', '%s', %d, '%s', '%s', '%s');",
+                xmlTemplate.getName(),xmlTemplate.getCreator(),xmlTemplate.getVisiable(),xmlTemplate.getDescription(),xmlTemplate.getIntroduce(),xmlTemplate.getLastModify()
         );
     }
 
     private static String parseXmlObject2Update(XmlTemplate xmlTemplate) {
         return String.format(
                 "UPDATE gv_collection_metric_templ " +
-                        "SET name = '%s', creator = '%s', description = '%s', create_version = '%s', last_modify_version = '%s' " +
+                        "SET name = '%s', creator = '%s',visiable = %d, description = '%s', create_version = '%s', last_modify_version = '%s' " +
                         "WHERE name = '%s';",
                 xmlTemplate.getName(),
                 xmlTemplate.getCreator(),
+                xmlTemplate.getVisiable(),
                 xmlTemplate.getDescription(),
                 xmlTemplate.getIntroduce(),
                 xmlTemplate.getLastModify(),

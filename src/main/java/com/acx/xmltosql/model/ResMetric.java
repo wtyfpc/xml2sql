@@ -6,7 +6,7 @@ import jakarta.xml.bind.annotation.XmlAttribute;
 public class ResMetric {
 
     private String name;
-    private String collector;
+//    private String collector;
     private String displayName;
     private String description;
     private byte dataType;
@@ -17,10 +17,10 @@ public class ResMetric {
     private String preProcess;
     private String postProcess;
     private byte collectMode;
-    private String batchGroup;
+//    private String batchGroup;
     private byte priority;
-    private String collectProtocol;
-    private String protocolParam;
+//    private String collectProtocol;
+//    private String protocolParam;
     private String valueKeyword;
     private String valueRange;
     private String valueMapping;
@@ -36,14 +36,14 @@ public class ResMetric {
         this.name = name;
     }
 
-    @XmlAttribute(name = "collector")
-    public String getCollector() {
-        return collector;
-    }
+//    @XmlAttribute(name = "collector")
+//    public String getCollector() {
+//        return collector;
+//    }
 
-    public void setCollector(String collector) {
-        this.collector = collector;
-    }
+//    public void setCollector(String collector) {
+//        this.collector = collector;
+//    }
 
     @XmlAttribute(name = "display_name")
     public String getDisplayName() {
@@ -135,14 +135,14 @@ public class ResMetric {
         this.collectMode = collectMode;
     }
 
-    @XmlAttribute(name = "batch_group")
-    public String getBatchGroup() {
-        return batchGroup;
-    }
-
-    public void setBatchGroup(String batchGroup) {
-        this.batchGroup = batchGroup;
-    }
+//    @XmlAttribute(name = "batch_group")
+//    public String getBatchGroup() {
+//        return batchGroup;
+//    }
+//
+//    public void setBatchGroup(String batchGroup) {
+//        this.batchGroup = batchGroup;
+//    }
 
     @XmlAttribute(name = "priority")
     public byte getPriority() {
@@ -153,21 +153,21 @@ public class ResMetric {
         this.priority = priority;
     }
 
-    @XmlAttribute(name = "collect_protocol")
-    public String getCollectProtocol() {return collectProtocol;}
+//    @XmlAttribute(name = "collect_protocol")
+//    public String getCollectProtocol() {return collectProtocol;}
+//
+//    public void setProtocol(String protocol) {
+//        this.collectProtocol = collectProtocol;
+//    }
+//
+//    @XmlAttribute(name = "protocol_param")
+//    public String getProtocolParam() {
+//        return protocolParam;
+//    }
 
-    public void setProtocol(String protocol) {
-        this.collectProtocol = collectProtocol;
-    }
-
-    @XmlAttribute(name = "protocol_param")
-    public String getProtocolParam() {
-        return protocolParam;
-    }
-
-    public void setProtocolParam(String protocolParam) {
-        this.protocolParam = protocolParam;
-    }
+//    public void setProtocolParam(String protocolParam) {
+//        this.protocolParam = protocolParam;
+//    }
 
     @XmlAttribute(name = "value_keyword")
     public String getValueKeyword() {

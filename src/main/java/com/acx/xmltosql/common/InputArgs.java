@@ -2,7 +2,7 @@ package com.acx.xmltosql.common;
 import com.beust.jcommander.Parameter;
 
 public class InputArgs {
-    @Parameter(names = {"-d", "--deployment"}, description = "Select installation mode")
+    @Parameter(names = {"-d", "--deployment"}, description = "Select installation mode (newinstall/update)")
     private String deployment = "update";
 
     @Parameter(names = {"-x", "--xml.directory.path"}, description = "xml file address")

@@ -61,17 +61,17 @@ public class MetricRelationGenerator  extends NewlyInstallSqlGenerator {
     private static String parseXmlObject2Insert(XmlTemplate xmlTemplate,ResMetric resMetric) {
         return String.format(
                 "INSERT INTO gv_collect_template_metric_relation (name, metric_name) " +
-                        "VALUES ('%s', '%s');",
-                xmlTemplate.getName(),resMetric.getName()
+                        "VALUES (%d, '%s');",
+                xmlTemplate.getHashcode(),resMetric.getName()
         );
     }
 
     private static String parseXmlObject2InsertNotExist(XmlTemplate xmlTemplate, ResMetric resMetric) {
         return String.format(
-                "INSERT INTO gv_collect_template_metric_relation (name, metric_name) " +
-                        "SELECT '%s', '%s' WHERE NOT EXISTS (" +
-                        "SELECT 1 FROM gv_collect_template_metric_relation WHERE name = '%s' AND metric_name = '%s');",
-                xmlTemplate.getName(), resMetric.getName(), xmlTemplate.getName(), resMetric.getName()
+                "INSERT INTO gv_collect_template_metric_relation (template_id, metric_name) " +
+                        "SELECT %d, '%s' WHERE NOT EXISTS (" +
+                        "SELECT 1 FROM gv_collect_template_metric_relation WHERE template_id = %d AND metric_name = '%s');",
+                xmlTemplate.getHashcode(), resMetric.getName(), xmlTemplate.getHashcode(), resMetric.getName()
         );
     }
 

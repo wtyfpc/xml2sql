@@ -58,38 +58,27 @@ public class MetricGenerator extends NewlyInstallSqlGenerator {
 
     protected static String parseXmlObject(ResMetric resMetric) {
         return String.format(
-                "INSERT INTO gv_collection_metric (name, collector, display_name ,description ,data_type, unit" +
-                        "part_type ,collect_interval ,iscollect, pre_process, post_process, collect_mode, batch_group" +
-                        ", priority, collect_protocol, protocol_param, value_keyword, value_range, value_mapping, " +
+                "INSERT INTO gv_collection_metric (name, display_name ,description ,data_type, unit" +
+                        "part_type ,collect_interval ,iscollect, pre_process, post_process, collect_mode" +
+                        ", priority, value_keyword, value_range, value_mapping, " +
                         "introduced_version, last_modify_version) " +
-                        "VALUES ('%s', '%s','%s', '%s', %d, '%s','%s', %d, %d, '%s','%s', %d,'%s', %d,'%s', '%s'," +
-                        "'%s', '%s','%s', '%s','%s');",
-                resMetric.getName(),resMetric.getCollector(),resMetric.getDisplayName(),resMetric.getDescription()
-                ,resMetric.getDataType(),resMetric.getUnit(),resMetric.getPartType(), resMetric.getCollectInterval(),
-                resMetric.getIsCollect(),resMetric.getPreProcess(),resMetric.getPostProcess(),resMetric.getCollectMode()
-                ,resMetric.getBatchGroup(),resMetric.getPriority(),resMetric.getCollectProtocol(),resMetric.getProtocolParam()
-                ,resMetric.getValueKeyword(),resMetric.getValueRange(),resMetric.getValueMapping()
-                ,resMetric.getCreateVersion(),resMetric.getLastModifyVersion()
+                        "VALUES " +
+                        "('%s', '%s', '%s'," +
+                        " %d, '%s','%s'," +
+                        " %d, %d, '%s'," +
+                        " '%s', %d, %d," +
+                        " '%s', '%s', '%s'," +
+                        " '%s','%s');",
+                resMetric.getName(),resMetric.getDisplayName(),resMetric.getDescription(),
+                resMetric.getDataType(),resMetric.getUnit(),resMetric.getPartType(),
+                resMetric.getCollectInterval(), resMetric.getIsCollect(),resMetric.getPreProcess(),
+                resMetric.getPostProcess(),resMetric.getCollectMode(),resMetric.getPriority(),
+                resMetric.getValueKeyword(),resMetric.getValueRange(),resMetric.getValueMapping(),
+                resMetric.getCreateVersion(),resMetric.getLastModifyVersion()
         );
     }
 
-    protected static List<ResMetric> filterResMetic(List<XmlTemplate> xmlTemplateList){
-        Map<String,ResMetric> maxLastModifyVersionResMetric= xmlTemplateList.stream()
-                .map(XmlTemplate::getMetrics)  // 提取 Metrics 对象
-                .flatMap(metrics -> metrics.getResmetrics().stream())  // 获取 ResMetric 列表并展平成单个流
-                .collect(Collectors.groupingBy(
-                        ResMetric::getName,  // 按 name 字段分组
-                        Collectors.collectingAndThen(  // 对分组后的数据进行后处理
-                                // 选择每组中 LastModifyVersion 最大的项
-                                Collectors.maxBy(Comparator.comparing(ResMetric::getLastModifyVersion)),
-                                optional -> optional.orElse(null)
-                        )
-                ));
-        //将maxLastModifyVersionResMetric存入列表里面
-        List<ResMetric> resMetricList = new ArrayList<>(maxLastModifyVersionResMetric.values());
 
-        return resMetricList;
-    }
 
 
 

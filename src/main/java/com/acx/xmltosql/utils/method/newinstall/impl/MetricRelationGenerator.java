@@ -42,12 +42,11 @@ public class MetricRelationGenerator extends NewlyInstallSqlGenerator {
     }
 
 
-    //TODO 修改格式
     protected static String parseXmlObject(XmlTemplate xmlTemplate,ResMetric resMetric) {
         return String.format(
-                "INSERT INTO gv_collect_template_metric_relation (name, metric_name) " +
-                        "VALUES ('%s', '%s');",
-                xmlTemplate.getName(),resMetric.getName()
+                "INSERT INTO gv_collect_template_metric_relation (template_id, metric_name) " +
+                        "VALUES (%d, '%s');",
+                xmlTemplate.getHashcode(),resMetric.getName()
         );
     }
 

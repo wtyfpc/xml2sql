@@ -6,17 +6,16 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "tempalte")
 public class XmlTemplate {
-
     private String name;
-
     private byte visiable;
-
-
     private String description;
     private String introduce;
     private String lastModify;
     private String creator;
     private Metrics metrics;
+
+    private Long hashcode;
+
 
     @XmlAttribute(name = "name")
     public String getName() {
@@ -31,7 +30,7 @@ public class XmlTemplate {
     // TODO: 2024/8/19  是否要加入visiable字段
     @XmlElement(name = "visiable")
     public byte getVisiable(){return visiable;}
-    public void setVisiable(String name) {
+    public void setVisiable(byte visiable) {
         this.visiable = visiable;
     }
 
@@ -81,4 +80,13 @@ public class XmlTemplate {
     public void setMetrics(Metrics metrics) {
         this.metrics = metrics;
     }
+
+    public Long getHashcode(){
+        return hashcode;
+    }
+
+    public void setHashcode(Long hashcode){
+        this.hashcode = hashcode;
+    }
+
 }

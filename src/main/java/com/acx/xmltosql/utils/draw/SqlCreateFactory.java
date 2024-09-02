@@ -22,7 +22,7 @@ public class SqlCreateFactory {
         if (deployment == null) {
             return null;
         }
-        if (deployment.equals("newly_installed")) {
+        if (deployment.equals("newinstall")) {
             return drawMethodMap.get("newly_installed");
         }
         if(deployment.equals("update")){
