@@ -59,7 +59,7 @@ public class MetricGenerator  extends NewlyInstallSqlGenerator {
 
     protected static String parseXmlObject2Insert(ResMetric resMetric) {
         return String.format(
-                "INSERT INTO gv_collection_metric (name, display_name ,description ,data_type, unit" +
+                "INSERT INTO gv_collection_metric (name, display_name ,description ,data_type, unit, " +
                         "part_type ,collect_interval ,iscollect, pre_process, post_process, collect_mode" +
                         ", priority, value_keyword, value_range, value_mapping, " +
                         "introduced_version, last_modify_version) " +

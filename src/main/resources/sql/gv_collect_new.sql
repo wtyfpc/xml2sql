@@ -107,8 +107,8 @@ CREATE TABLE `gv_collection_metric_templ`  (
   `visiable` tinyint(4) NOT NULL COMMENT '可见性',
   `description` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '模板描述',
   `creator` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '创建人',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `last_modify_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  `create_version` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '创建版本',
+  `last_modify_version` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '最后修改版本',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uni_index_name`(`name`) USING BTREE COMMENT '指标模板名称唯一索引'
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '指标模版表' ROW_FORMAT = Dynamic;
