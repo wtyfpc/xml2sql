@@ -27,7 +27,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        List<XmlTemplate>  xmlObjectList = xmlToObjectList.loadfile();
+        List<XmlTemplate>  xmlObjectList = xmlToObjectList.loadFile();
         IDrawMethod drawMethod = sqlCreateFactory.getSqlGenerator();
         drawMethod.draw(xmlObjectList);
     }

@@ -22,53 +22,53 @@ public class XmlToObjectList {
 
     private static final Logger logger = LoggerFactory.getLogger(XmlToObjectList.class);
 
-    void XmlToObject(){
-
-    }
-
-    public List<XmlTemplate> loadfile(){
-        // 创建一个文件对象，指向该目录
-        File directory = new File(inputArgs.getXmlDirectoryPath());
-        // 获取目录下的所有XML文件
-        File[] files = directory.listFiles((dir, name) -> name.toLowerCase().endsWith(".xml"));
-
-        // 创建一个List来存放解析后的XML对象
+    public List<XmlTemplate> loadFile() {
+        // Create a list to store parsed XML objects
         List<XmlTemplate> xmlObjectList = new ArrayList<>();
 
+        // Recursively get all XML files from the directory
+        List<File> xmlFiles = getXmlFilesRecursively(new File(inputArgs.getXmlDirectoryPath()));
 
-        if (files != null) {
-            for (File file : files) {
-                try {
-                    JAXBContext jaxbContext = null;
-                    try {
-                        jaxbContext = JAXBContext.newInstance(XmlTemplate.class);
-                    } catch (JAXBException ex) {
-                        logger.error("JAXBException occurred: ", ex);
-                        throw new RuntimeException(ex);
-                    }
+        for (File file : xmlFiles) {
+            try {
+                JAXBContext jaxbContext = JAXBContext.newInstance(XmlTemplate.class);
+                Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+                XmlTemplate xmlTemplate = (XmlTemplate) jaxbUnmarshaller.unmarshal(file);
 
-                    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-                    XmlTemplate xmlTemplate = (XmlTemplate) jaxbUnmarshaller.unmarshal(file);
+                // Calculate XML's hash ID
+                NameToIdUtil nameToIdUtil = new NameToIdUtil();
+                xmlTemplate.setHashcode(nameToIdUtil.getStrHashCode(xmlTemplate.getName()));
 
+                // Add the object to the list
+                xmlObjectList.add(xmlTemplate);
 
-                    //计算xml的hashid
-                    NameToIdUtil nameToIdUtil = new NameToIdUtil();
-                    xmlTemplate.setHashcode(nameToIdUtil.getStrHashCode(xmlTemplate.getName()));
-
-
-                    // 将对象加入到ArrayList中
-                    xmlObjectList.add(xmlTemplate);
-
-                } catch (JAXBException e) {
-                    logger.error("JAXBException occurred: ", e);
-                    e.printStackTrace();
-                }
-
+            } catch (JAXBException e) {
+                logger.error("Error occurred while unmarshalling XML: ", e);
+                e.printStackTrace();
             }
-
         }
 
         return xmlObjectList;
+    }
 
+    // Recursively retrieve all XML files in the directory and its subdirectories
+    private List<File> getXmlFilesRecursively(File directory) {
+        List<File> xmlFiles = new ArrayList<>();
+
+        // List files and directories in the current directory
+        File[] files = directory.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    // Recursively collect files from subdirectories
+                    xmlFiles.addAll(getXmlFilesRecursively(file));
+                } else if (file.isFile() && file.getName().toLowerCase().endsWith(".xml")) {
+                    // Add XML file to the list
+                    xmlFiles.add(file);
+                }
+            }
+        }
+
+        return xmlFiles;
     }
 }
