@@ -12,7 +12,9 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component("updateMetricRelationGenerator")
 public class MetricRelationGenerator  extends NewlyInstallSqlGenerator {
@@ -38,8 +40,14 @@ public class MetricRelationGenerator  extends NewlyInstallSqlGenerator {
 
     @Override
     public String generateSql(List<XmlTemplate> xmlTemplateList){
+        //创建Set确保指标-模板关联关系唯一性
+        Set<String> processedNames = new HashSet<>();
         for(XmlTemplate xmlTemplate : xmlTemplateList) {
             for (ResMetric resMetric : xmlTemplate.getMetrics().getResmetrics()) {
+                if (processedNames.contains(resMetric.getName())) {
+                    continue;
+                }
+                processedNames.add(resMetric.getName());
                 String sql = null;
                 if(currentVersion.equals(xmlTemplate.getIntroduce())){
                     sql = parseXmlObject2Insert(xmlTemplate,resMetric);
