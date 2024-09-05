@@ -3,7 +3,7 @@ import com.beust.jcommander.Parameter;
 
 public class InputArgs {
     @Parameter(names = {"-d", "--deployment"}, description = "Select installation mode (newinstall/update)")
-    private String deployment = "update";
+    private String deployment = "newinstall";
 
     @Parameter(names = {"-x", "--xml.directory.path"}, description = "xml file address")
     private String xmlDirectoryPath = "./xml";

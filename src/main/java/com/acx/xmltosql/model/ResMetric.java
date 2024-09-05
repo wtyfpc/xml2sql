@@ -189,7 +189,7 @@ public class ResMetric {
 
     @XmlAttribute(name = "value_mapping")
     public String getValueMapping() {
-        return valueMapping;
+        return valueMapping.replace("'", "\"");
     }
 
     public void setValueMapping(String valueMapping) {
