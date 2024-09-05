@@ -180,7 +180,7 @@ public class ResMetric {
 
     @XmlAttribute(name = "value_range")
     public String getValueRange() {
-        return valueRange;
+        return valueRange.replace("'", "\"");
     }
 
     public void setValueRange(String valueRange) {

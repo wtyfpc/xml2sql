@@ -73,8 +73,8 @@ CREATE TABLE `gv_collection_metric`  (
   `collect_mode` tinyint(1) NOT NULL COMMENT '推模式还是拉模式',
   `priority` tinyint(1) NOT NULL COMMENT '指标优先级',
   `value_keyword` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '关键字',
-  `value_range` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '取值范围',
-  `value_mapping` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '值映射关系',
+  `value_range` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '取值范围',
+  `value_mapping` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '值映射关系',
   `introduced_version` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '指标引入版本',
   `last_modify_version` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '最后修改版本',
   PRIMARY KEY (`id`) USING BTREE

@@ -32,7 +32,7 @@ public class InitConfig {
         if (parentDirectory != null && Files.notExists(parentDirectory)) {
             Files.createDirectories(parentDirectory);  // 创建父目录
         }
-        if(inputArgs.getCurrentVersion().equals("newinstall")){
+        if(inputArgs.getDeployment().equals("newinstall")){
             // 复制 resource 下的 gv_collect_new.sql 文件到 parentDirectory
             try (InputStream resourceStream = getClass().getClassLoader()
                     .getResourceAsStream("sql/gv_collect_new.sql")) {
