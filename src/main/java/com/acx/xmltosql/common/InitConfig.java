@@ -4,12 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Comparator;
+import java.util.stream.Stream;
 
 @Configuration
 public class InitConfig {
@@ -29,9 +32,21 @@ public class InitConfig {
     public void createPathIfNotExists() throws IOException {
         // 检查并创建父目录
         Path parentDirectory = outputPath.getParent();
+        if (parentDirectory != null) {
+            if (Files.exists(parentDirectory)) {
+                // 清空目录
+                try (Stream<Path> files = Files.walk(parentDirectory)) {
+                    files.sorted(Comparator.reverseOrder())
+                            .map(Path::toFile)
+                            .forEach(File::delete);
+                }
+            }
+        }
+
         if (parentDirectory != null && Files.notExists(parentDirectory)) {
             Files.createDirectories(parentDirectory);  // 创建父目录
         }
+
         if(inputArgs.getDeployment().equals("newinstall")){
             // 复制 resource 下的 gv_collect_new.sql 文件到 parentDirectory
             try (InputStream resourceStream = getClass().getClassLoader()

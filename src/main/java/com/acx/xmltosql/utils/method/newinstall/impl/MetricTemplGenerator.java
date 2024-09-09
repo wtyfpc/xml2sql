@@ -44,9 +44,9 @@ public class MetricTemplGenerator extends NewlyInstallSqlGenerator {
 
     protected static String parseXmlObject(XmlTemplate xmlTemplate) {
         return String.format(
-                "INSERT INTO gv_collection_metric_templ (name, creator, visiable, description, create_version, last_modify_version) " +
+                "INSERT INTO gv_collection_metric_templ (id, name, creator, visiable, description, create_version, last_modify_version) " +
                         "VALUES ('%s', '%s', %d, '%s', '%s', '%s');",
-                xmlTemplate.getName(),xmlTemplate.getCreator(),xmlTemplate.getVisiable(),xmlTemplate.getDescription(),xmlTemplate.getIntroduce(),xmlTemplate.getLastModify()
+                xmlTemplate.getHashcode(),xmlTemplate.getName(),xmlTemplate.getCreator(),xmlTemplate.getVisiable(),xmlTemplate.getDescription(),xmlTemplate.getIntroduce(),xmlTemplate.getLastModify()
         );
     }
 
