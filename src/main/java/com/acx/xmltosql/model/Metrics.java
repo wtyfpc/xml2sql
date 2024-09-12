@@ -15,4 +15,5 @@ public class Metrics {
     public void setResmetrics(List<ResMetric> resmetrics) {
         this.resmetrics = resmetrics;
     }
+
 }

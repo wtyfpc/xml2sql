@@ -90,7 +90,7 @@ public class ResMetric {
         this.partType = partType;
     }
 
-    @XmlAttribute(name = "collect_interval")
+    @XmlAttribute(name = "interval")
     public byte getCollectInterval() {
         return collectInterval;
     }
