@@ -1,8 +1,6 @@
 package com.acx.xmltosql.common.tools;
-
 import com.acx.xmltosql.common.init.InputArgs;
 import com.acx.xmltosql.common.tools.enhance.FieldEnhanceFactory;
-import com.acx.xmltosql.common.tools.enhance.utils.NameToIdUtil;
 import com.acx.xmltosql.model.ResMetric;
 import com.acx.xmltosql.model.XmlTemplate;
 import jakarta.xml.bind.JAXBContext;
