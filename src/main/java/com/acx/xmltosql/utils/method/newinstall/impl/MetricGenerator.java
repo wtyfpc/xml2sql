@@ -1,6 +1,6 @@
 package com.acx.xmltosql.utils.method.newinstall.impl;
 
-import com.acx.xmltosql.common.InputArgs;
+import com.acx.xmltosql.common.init.InputArgs;
 import com.acx.xmltosql.model.ResMetric;
 import com.acx.xmltosql.model.XmlTemplate;
 import com.acx.xmltosql.utils.method.newinstall.NewlyInstallSqlGenerator;
@@ -13,7 +13,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Component("newInstallMetricGenerator")
 public class MetricGenerator extends NewlyInstallSqlGenerator {

@@ -12,7 +12,7 @@ public class ResMetric {
     private byte dataType;
     private String unit;
     private String partType;
-    private byte collectInterval;
+    private Integer collectInterval;
     private byte isCollect;
     private String preProcess;
     private String postProcess;
@@ -91,11 +91,11 @@ public class ResMetric {
     }
 
     @XmlAttribute(name = "interval")
-    public byte getCollectInterval() {
+    public Integer getCollectInterval() {
         return collectInterval;
     }
 
-    public void setCollectInterval(byte collectInterval) {
+    public void setCollectInterval(Integer collectInterval) {
         this.collectInterval = collectInterval;
     }
 
@@ -180,7 +180,7 @@ public class ResMetric {
 
     @XmlAttribute(name = "value_range")
     public String getValueRange() {
-        return valueRange.replace("'", "\"");
+        return valueRange;
     }
 
     public void setValueRange(String valueRange) {
@@ -189,7 +189,7 @@ public class ResMetric {
 
     @XmlAttribute(name = "value_mapping")
     public String getValueMapping() {
-        return valueMapping.replace("'", "\"");
+        return valueMapping;
     }
 
     public void setValueMapping(String valueMapping) {

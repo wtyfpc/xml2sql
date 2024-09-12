@@ -7,6 +7,7 @@ import ch.qos.logback.core.ConsoleAppender;
 import ch.qos.logback.core.rolling.RollingFileAppender;
 import ch.qos.logback.core.rolling.TimeBasedRollingPolicy;
 import ch.qos.logback.core.util.StatusPrinter;
+import com.acx.xmltosql.common.init.InputArgs;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

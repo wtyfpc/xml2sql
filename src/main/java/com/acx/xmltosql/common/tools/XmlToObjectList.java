@@ -1,6 +1,9 @@
 package com.acx.xmltosql.common.tools;
 
-import com.acx.xmltosql.common.InputArgs;
+import com.acx.xmltosql.common.init.InputArgs;
+import com.acx.xmltosql.common.tools.enhance.FieldEnhanceFactory;
+import com.acx.xmltosql.common.tools.enhance.utils.NameToIdUtil;
+import com.acx.xmltosql.model.ResMetric;
 import com.acx.xmltosql.model.XmlTemplate;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
@@ -20,6 +23,9 @@ public class XmlToObjectList {
     @Autowired
     private InputArgs inputArgs;
 
+    @Autowired
+    private FieldEnhanceFactory fieldEnhanceFactory;
+
     private static final Logger logger = LoggerFactory.getLogger(XmlToObjectList.class);
 
     public List<XmlTemplate> loadFile() {
@@ -35,9 +41,17 @@ public class XmlToObjectList {
                 Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
                 XmlTemplate xmlTemplate = (XmlTemplate) jaxbUnmarshaller.unmarshal(file);
 
-                // Calculate XML's hash ID
-                NameToIdUtil nameToIdUtil = new NameToIdUtil();
-                xmlTemplate.setHashcode(nameToIdUtil.getStrHashCode(xmlTemplate.getName()));
+                xmlTemplate.setHashcode(fieldEnhanceFactory.createHashID(xmlTemplate.getName()));
+
+                //增强Metric字段
+                for (ResMetric resMetric : xmlTemplate.getMetrics().getResmetrics()) {
+                    // 将主资产的PartType转为大写
+                    resMetric.setPartType(fieldEnhanceFactory.enhancePartType(resMetric.getPartType()));
+                    //将ValueRange的单引号变双引号
+                    resMetric.setValueRange(fieldEnhanceFactory.enhanceValueRange(resMetric.getValueRange()));
+                    //将ValueMapping的单引号变双引号
+                    resMetric.setValueMapping(fieldEnhanceFactory.enhanceValueMapping(resMetric.getValueMapping()));
+                }
 
                 // Add the object to the list
                 xmlObjectList.add(xmlTemplate);

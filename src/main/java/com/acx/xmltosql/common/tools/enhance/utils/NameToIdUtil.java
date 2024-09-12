@@ -1,4 +1,6 @@
-package com.acx.xmltosql.common.tools;
+package com.acx.xmltosql.common.tools.enhance.utils;
+
+import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -7,6 +9,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  *
  */
+@Component
 public class NameToIdUtil {
 
 

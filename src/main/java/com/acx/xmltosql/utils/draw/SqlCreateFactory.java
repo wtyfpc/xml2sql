@@ -1,12 +1,10 @@
 package com.acx.xmltosql.utils.draw;
-
-import com.acx.xmltosql.common.InputArgs;
+import com.acx.xmltosql.common.init.InputArgs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import static com.acx.xmltosql.utils.draw.DrawConfig.drawMethodMap;
 
 @Component
-public class SqlCreateFactory {
+public class SqlCreateFactory extends DrawConfig{
 
     @Autowired
     private final InputArgs inputArgs;

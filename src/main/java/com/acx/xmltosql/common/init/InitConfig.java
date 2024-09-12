@@ -1,4 +1,4 @@
-package com.acx.xmltosql.common;
+package com.acx.xmltosql.common.init;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

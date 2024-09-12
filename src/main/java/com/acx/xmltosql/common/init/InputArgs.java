@@ -1,4 +1,4 @@
-package com.acx.xmltosql.common;
+package com.acx.xmltosql.common.init;
 import com.beust.jcommander.Parameter;
 
 public class InputArgs {

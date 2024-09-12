@@ -26,8 +26,6 @@ public class XmlTemplate {
         this.name = name;
     }
 
-
-    // TODO: 2024/8/19  是否要加入visiable字段
     @XmlElement(name = "visiable")
     public byte getVisiable(){return visiable;}
     public void setVisiable(byte visiable) {

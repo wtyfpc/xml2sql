@@ -1,6 +1,6 @@
 package com.acx.xmltosql.utils.method.update.impi;
 
-import com.acx.xmltosql.common.InputArgs;
+import com.acx.xmltosql.common.init.InputArgs;
 import com.acx.xmltosql.model.XmlTemplate;
 import com.acx.xmltosql.utils.method.update.UpdateSqlGenerator;
 import org.slf4j.Logger;
