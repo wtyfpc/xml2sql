@@ -27,8 +27,6 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // 如果data目录存在 删除
-
         List<XmlTemplate>  xmlObjectList = xmlToObjectList.loadFile();
         IDrawMethod drawMethod = sqlCreateFactory.getSqlGenerator();
         drawMethod.draw(xmlObjectList);
