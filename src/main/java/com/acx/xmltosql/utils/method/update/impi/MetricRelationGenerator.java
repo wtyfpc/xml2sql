@@ -32,7 +32,7 @@ public class MetricRelationGenerator  extends NewlyInstallSqlGenerator {
 
     public MetricRelationGenerator(InputArgs inputArgs) {
         this.inputArgs = inputArgs;
-        this.sqlFilePath = inputArgs.getSqlFilePath() + "gv_collect_template_metric_relation.sql";
+        this.sqlFilePath = inputArgs.getSqlFilePath() + "04-gv_collect_template_metric_relation.sql";
         this.currentVersion = inputArgs.getCurrentVersion();
         this.sqlBuilder = new StringBuilder(); // 在构造函数中初始化 StringBuilder
     }

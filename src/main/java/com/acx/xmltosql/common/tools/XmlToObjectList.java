@@ -11,9 +11,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Component
 public class XmlToObjectList {
@@ -59,11 +64,31 @@ public class XmlToObjectList {
                 e.printStackTrace();
             }
         }
-
+        //System.out.println("xmlObjectList's size = " + xmlObjectList.size());
         return xmlObjectList;
     }
 
     // Recursively retrieve all XML files in the directory and its subdirectories
+//    private List<File> getXmlFilesRecursively(File directory) {
+//        List<File> xmlFiles = new ArrayList<>();
+//
+//        // List files and directories in the current directory
+//        File[] files = directory.listFiles();
+//        if (files != null) {
+//            for (File file : files) {
+//                if (file.isDirectory()) {
+//                    // Recursively collect files from subdirectories
+//                    xmlFiles.addAll(getXmlFilesRecursively(file));
+//                } else if (file.isFile() && file.getName().toLowerCase().endsWith(".xml")) {
+//                    // Add XML file to the list
+//                    xmlFiles.add(file);
+//                }
+//            }
+//        }
+//
+//        return xmlFiles;
+//    }
+
     private List<File> getXmlFilesRecursively(File directory) {
         List<File> xmlFiles = new ArrayList<>();
 
@@ -71,16 +96,20 @@ public class XmlToObjectList {
         File[] files = directory.listFiles();
         if (files != null) {
             for (File file : files) {
-                if (file.isDirectory()) {
-                    // Recursively collect files from subdirectories
-                    xmlFiles.addAll(getXmlFilesRecursively(file));
-                } else if (file.isFile() && file.getName().toLowerCase().endsWith(".xml")) {
+                if (file.isDirectory()) { //如果是目录
+                    File[] files1 = file.listFiles();
+                    for(File subFile : files1){
+                        if(subFile.isFile() && subFile.getName().matches(".*metric_template\\.xml")){
+                            xmlFiles.add(subFile);
+                        }
+                    }
+                } else if (file.isFile() && file.getName().matches(".*metric_template\\.xml")) {
                     // Add XML file to the list
                     xmlFiles.add(file);
                 }
             }
         }
-
+        //System.out.println(xmlFiles.size());
         return xmlFiles;
     }
 }

@@ -28,7 +28,7 @@ public class MetricTemplGenerator extends UpdateSqlGenerator {
 
     public MetricTemplGenerator(InputArgs inputArgs) {
         this.inputArgs = inputArgs;
-        this.sqlFilePath = inputArgs.getSqlFilePath() + "gv_collection_metric_templ.sql";
+        this.sqlFilePath = inputArgs.getSqlFilePath() + "03-gv_collection_metric_templ.sql";
         this.currentVersion = inputArgs.getCurrentVersion();
         this.sqlBuilder = new StringBuilder();
     }

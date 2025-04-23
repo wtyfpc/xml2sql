@@ -24,7 +24,7 @@ public class ResMetric {
     private String valueKeyword;
     private String valueRange;
     private String valueMapping;
-    private String createVersion;
+    private String introduceVersion;
     private String lastModifyVersion;
 
     @XmlAttribute(name = "name")
@@ -196,13 +196,13 @@ public class ResMetric {
         this.valueMapping = valueMapping;
     }
 
-    @XmlAttribute(name = "create_version")
-    public String getCreateVersion() {
-        return createVersion;
+    @XmlAttribute(name = "introduce_version")
+    public String getIntroduceVersion() {
+        return introduceVersion;
     }
 
-    public void setCreateVersion(String createVersion) {
-        this.createVersion = createVersion;
+    public void setIntroduceVersion(String introducedVersion) {
+        this.introduceVersion = introducedVersion;
     }
 
     @XmlAttribute(name = "last_modify_version")

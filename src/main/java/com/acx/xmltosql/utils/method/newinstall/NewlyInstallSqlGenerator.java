@@ -21,6 +21,4 @@ public abstract class NewlyInstallSqlGenerator extends BaseSqlGenerator implemen
         sqlBuilder.append(sql).append("\n");
         return sqlBuilder;
     }
-
-
 }

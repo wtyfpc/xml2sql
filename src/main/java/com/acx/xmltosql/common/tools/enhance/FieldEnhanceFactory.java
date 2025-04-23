@@ -23,9 +23,8 @@ public class FieldEnhanceFactory extends PartTypeConfig{
     public String enhancePartType(String s){
         if(parTypeMap.containsKey(s)){
             return parTypeMap.get(s);
-        }
-        else{
-            return s;
+        } else{
+            return s.toUpperCase();
         }
     }
 

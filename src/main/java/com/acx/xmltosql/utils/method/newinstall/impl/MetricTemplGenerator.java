@@ -27,7 +27,7 @@ public class MetricTemplGenerator extends NewlyInstallSqlGenerator {
 
     public MetricTemplGenerator(InputArgs inputArgs) {
         this.inputArgs = inputArgs;
-        this.sqlFilePath = inputArgs.getSqlFilePath() + "gv_collection_metric_templ.sql";
+        this.sqlFilePath = inputArgs.getSqlFilePath() + "03-gv_collection_metric_templ.sql";
         this.sqlBuilder = new StringBuilder(); // 在构造函数中初始化 StringBuilder
     }
 
@@ -44,9 +44,10 @@ public class MetricTemplGenerator extends NewlyInstallSqlGenerator {
 
     protected static String parseXmlObject(XmlTemplate xmlTemplate) {
         return String.format(
-                "INSERT INTO gv_collection_metric_templ (id, name, creator, visiable, description, create_version, last_modify_version) " +
-                        "VALUES (%d ,'%s', '%s', %d, '%s', '%s', '%s');",
-                xmlTemplate.getHashcode(),xmlTemplate.getName(),xmlTemplate.getCreator(),xmlTemplate.getVisiable(),xmlTemplate.getDescription(),xmlTemplate.getIntroduce(),xmlTemplate.getLastModify()
+                "INSERT INTO gv_collection_metric_templ (id, name, creator, visiable, description, create_version, last_modify_version, resource_type, type_name, sort_number) " +
+                        "VALUES (%d ,'%s', '%s', %d, '%s', '%s', '%s', '%s', '%s', '%d');",
+                xmlTemplate.getHashcode(),xmlTemplate.getName(),xmlTemplate.getCreator(),xmlTemplate.getVisiable(),xmlTemplate.getDescription(),
+                xmlTemplate.getIntroduce(),xmlTemplate.getLastModify(),xmlTemplate.getResourceType(),xmlTemplate.getTypeName(),xmlTemplate.getSortNumber()
         );
     }
 
@@ -60,8 +61,5 @@ public class MetricTemplGenerator extends NewlyInstallSqlGenerator {
             e.printStackTrace();
         }
     }
-
-
-
 
 }

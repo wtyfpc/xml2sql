@@ -26,7 +26,7 @@ public class MetricGenerator extends NewlyInstallSqlGenerator {
 
     public MetricGenerator(InputArgs inputArgs) {
         this.inputArgs = inputArgs;
-        this.sqlFilePath = inputArgs.getSqlFilePath() + "gv_collection_metric.sql";
+        this.sqlFilePath = inputArgs.getSqlFilePath() + "02-gv_collection_metric.sql";
         this.sqlBuilder = new StringBuilder(); // 在构造函数中初始化 StringBuilder
     }
 
@@ -46,7 +46,7 @@ public class MetricGenerator extends NewlyInstallSqlGenerator {
 
     @Override
     public void exportToFile(String sql) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(sqlFilePath, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(sqlFilePath,true))) {
             writer.write(sql);
             writer.newLine();
         } catch (IOException e) {
@@ -60,28 +60,20 @@ public class MetricGenerator extends NewlyInstallSqlGenerator {
                 "INSERT INTO gv_collection_metric (name, display_name ,description ,data_type, unit, " +
                         "part_type ,collect_interval ,iscollect, pre_process, post_process, collect_mode" +
                         ", priority, value_keyword, value_range, value_mapping, " +
-                        "introduced_version, last_modify_version) " +
+                        "introduced_version, last_modify_version, creator) " +
                         "VALUES " +
                         "('%s', '%s', '%s'," +
                         " %d, '%s','%s'," +
                         " %d, %d, '%s'," +
                         " '%s', %d, %d," +
                         " '%s', '%s', '%s'," +
-                        " '%s','%s');",
+                        " '%s','%s', 'gridview');",
                 resMetric.getName(),resMetric.getDisplayName(),resMetric.getDescription(),
                 resMetric.getDataType(),resMetric.getUnit(),resMetric.getPartType(),
                 resMetric.getCollectInterval(), resMetric.getIsCollect(),resMetric.getPreProcess(),
                 resMetric.getPostProcess(),resMetric.getCollectMode(),resMetric.getPriority(),
                 resMetric.getValueKeyword(),resMetric.getValueRange(),resMetric.getValueMapping(),
-                resMetric.getCreateVersion(),resMetric.getLastModifyVersion()
+                resMetric.getIntroduceVersion(),resMetric.getLastModifyVersion()
         );
     }
-
-
-
-
-
-
-
-
 }

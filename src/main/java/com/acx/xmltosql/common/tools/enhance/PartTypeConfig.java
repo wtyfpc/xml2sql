@@ -43,6 +43,7 @@ public class PartTypeConfig {
         parTypeMap.put("virtual host", "VIRTUAL HOST");
         parTypeMap.put("virusmgmt", "VIRUSMGMT");
         parTypeMap.put("waf", "WAF");
+        parTypeMap.put("switchport", "SWITCHPORT");
     }
 
 }

@@ -4,7 +4,7 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 
-@XmlRootElement(name = "tempalte")
+@XmlRootElement(name = "template")
 public class XmlTemplate {
     private String name;
     private byte visiable;
@@ -12,6 +12,10 @@ public class XmlTemplate {
     private String introduce;
     private String lastModify;
     private String creator;
+    private String resourceType;
+    private String typeName;
+    private int sortNumber;
+    //private String createTime;
     private Metrics metrics;
 
     private Long hashcode;
@@ -69,6 +73,42 @@ public class XmlTemplate {
     public void setCreator(String creator) {
         this.creator = creator;
     }
+
+    @XmlElement(name = "resourceType")
+    public String getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(String resourceType) {
+        this.resourceType = resourceType;
+    }
+
+    @XmlElement(name = "typeName")
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    @XmlElement(name = "sortNumber")
+    public int getSortNumber() {
+        return sortNumber;
+    }
+
+    public void setSortNumber(int sortNumber) {
+        this.sortNumber = sortNumber;
+    }
+
+//    @XmlElement(name = "createTime")
+//    public String getCreateTime() {
+//        return createTime;
+//    }
+//
+//    public void setCreateTime(String createTime) {
+//        this.createTime = createTime;
+//    }
 
     @XmlElement(name = "metrics")
     public Metrics getMetrics() {

@@ -30,27 +30,32 @@ public class DrawUpdate implements IDrawMethod {
     @Override
     public void draw(List<XmlTemplate> xmlObject) {
         // Create a ThreadPoolExecutor with core pool size 3, maximum pool size 5, and a LinkedBlockingQueue with capacity 100
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
-                3,  // core pool size
-                5,  // maximum pool size
-                60, // idle time before terminating idle threads
-                TimeUnit.SECONDS,
-                new LinkedBlockingQueue<>(100) // queue with capacity of 100
-        );
+//        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
+//                3,  // core pool size
+//                5,  // maximum pool size
+//                60, // idle time before terminating idle threads
+//                TimeUnit.SECONDS,
+//                new LinkedBlockingQueue<>(100) // queue with capacity of 100
+//        );
+//
+//        try {
+//            // Submit tasks to the thread pool
+//            threadPoolExecutor.submit(() -> metricTemplGenerator.exec(xmlObject));
+//            threadPoolExecutor.submit(() -> metricGenerator.exec(xmlObject));
+//            threadPoolExecutor.submit(() -> metricRelationGenerator.exec(xmlObject));
+//
+//            // Optionally, wait for all tasks to finish (this is blocking)
+//            threadPoolExecutor.shutdown();  // Prevents new tasks from being submitted
+//            threadPoolExecutor.awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS);  // Wait for the termination of all tasks
+//        } catch (InterruptedException e) {
+//            Thread.currentThread().interrupt();  // Restore interrupt status
+//            e.printStackTrace();
+//        }
 
-        try {
-            // Submit tasks to the thread pool
-            threadPoolExecutor.submit(() -> metricTemplGenerator.exec(xmlObject));
-            threadPoolExecutor.submit(() -> metricGenerator.exec(xmlObject));
-            threadPoolExecutor.submit(() -> metricRelationGenerator.exec(xmlObject));
+        metricTemplGenerator.exec(xmlObject);
+        metricGenerator.exec(xmlObject);
+        metricRelationGenerator.exec(xmlObject);
 
-            // Optionally, wait for all tasks to finish (this is blocking)
-            threadPoolExecutor.shutdown();  // Prevents new tasks from being submitted
-            threadPoolExecutor.awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS);  // Wait for the termination of all tasks
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();  // Restore interrupt status
-            e.printStackTrace();
-        }
     }
 
 }

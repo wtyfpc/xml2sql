@@ -28,15 +28,16 @@ public class MetricRelationGenerator extends NewlyInstallSqlGenerator {
 
     public MetricRelationGenerator(InputArgs inputArgs) {
         this.inputArgs = inputArgs;
-        this.sqlFilePath = inputArgs.getSqlFilePath() + "gv_collect_template_metric_relation.sql";
+        this.sqlFilePath = inputArgs.getSqlFilePath() + "04-gv_collect_template_metric_relation.sql";
         this.sqlBuilder = new StringBuilder(); // 在构造函数中初始化 StringBuilder
     }
 
     @Override
     public String generateSql(List<XmlTemplate> xmlTemplateList){
         //创建Set确保指标-模板关联关系关系唯一性
-        Set<String> processedNames = new HashSet<>();
+//        Set<String> processedNames = new HashSet<>();
         for(XmlTemplate xmlTemplate : xmlTemplateList) {
+            Set<String> processedNames = new HashSet<>();
             for (ResMetric resMetric : xmlTemplate.getMetrics().getResmetrics()) {
                 if (processedNames.contains(resMetric.getName())) {
                     continue;
@@ -60,7 +61,7 @@ public class MetricRelationGenerator extends NewlyInstallSqlGenerator {
 
     @Override
     public void exportToFile(String sql) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(sqlFilePath, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(sqlFilePath,true))) {
             writer.write(sql);
             writer.newLine();
         } catch (IOException e) {

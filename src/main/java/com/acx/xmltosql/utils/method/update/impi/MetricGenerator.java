@@ -27,7 +27,7 @@ public class MetricGenerator  extends NewlyInstallSqlGenerator {
 
     public MetricGenerator(InputArgs inputArgs) {
         this.inputArgs = inputArgs;
-        this.sqlFilePath = inputArgs.getSqlFilePath() + "gv_collection_metric.sql";
+        this.sqlFilePath = inputArgs.getSqlFilePath() + "02-gv_collection_metric.sql";
         this.sqlBuilder = new StringBuilder(); // 在构造函数中初始化 StringBuilder
         this.currentVersion = inputArgs.getCurrentVersion();
     }
@@ -41,7 +41,7 @@ public class MetricGenerator  extends NewlyInstallSqlGenerator {
         for(ResMetric resMetric : resMetricList){
             if(currentVersion.equals(resMetric.getLastModifyVersion())) {
                 String sql = null;
-                if (resMetric.getCreateVersion().equals(resMetric.getLastModifyVersion())) {
+                if (resMetric.getIntroduceVersion().equals(resMetric.getLastModifyVersion())) {
                     sql = parseXmlObject2Insert(resMetric);
                 }
                 else{
@@ -59,20 +59,20 @@ public class MetricGenerator  extends NewlyInstallSqlGenerator {
                 "INSERT INTO gv_collection_metric (name, display_name ,description ,data_type, unit, " +
                         "part_type ,collect_interval ,iscollect, pre_process, post_process, collect_mode" +
                         ", priority, value_keyword, value_range, value_mapping, " +
-                        "introduced_version, last_modify_version) " +
+                        "introduced_version, last_modify_version, creator) " +
                         "VALUES " +
                         "('%s', '%s', '%s'," +
                         " %d, '%s','%s'," +
                         " %d, %d, '%s'," +
                         " '%s', %d, %d," +
                         " '%s', '%s', '%s'," +
-                        " '%s','%s');",
+                        " '%s','%s', 'gridview');",
                 resMetric.getName(),resMetric.getDisplayName(),resMetric.getDescription(),
                 resMetric.getDataType(),resMetric.getUnit(),resMetric.getPartType(),
                 resMetric.getCollectInterval(), resMetric.getIsCollect(),resMetric.getPreProcess(),
                 resMetric.getPostProcess(),resMetric.getCollectMode(),resMetric.getPriority(),
                 resMetric.getValueKeyword(),resMetric.getValueRange(),resMetric.getValueMapping(),
-                resMetric.getCreateVersion(),resMetric.getLastModifyVersion()
+                resMetric.getIntroduceVersion(),resMetric.getLastModifyVersion()
         );
     }
 
@@ -101,7 +101,7 @@ public class MetricGenerator  extends NewlyInstallSqlGenerator {
                 resMetric.getCollectInterval(), resMetric.getIsCollect(), resMetric.getPreProcess(),
                 resMetric.getPostProcess(), resMetric.getCollectMode(), resMetric.getPriority(),
                 resMetric.getValueKeyword(), resMetric.getValueRange(), resMetric.getValueMapping(),
-                resMetric.getCreateVersion(), resMetric.getLastModifyVersion(), resMetric.getName()
+                resMetric.getIntroduceVersion(), resMetric.getLastModifyVersion(), resMetric.getName()
         );
     }
 

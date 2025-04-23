@@ -6,7 +6,7 @@ public class InputArgs {
     private String deployment = "newinstall";
 
     @Parameter(names = {"-x", "--xml.directory.path"}, description = "xml file address")
-    private String xmlDirectoryPath = "./xml";
+    private String xmlDirectoryPath = "./";
 
     @Parameter(names = {"-s", "--sql.file.path"}, description = "SQL file location")
     private String sqlDirectoryPath = "./data/sql/";
